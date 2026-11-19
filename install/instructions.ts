@@ -1,8 +1,8 @@
 // The sub-agents note in each agent's own instruction file: Pi's AGENTS.md,
 // Claude Code's CLAUDE.md, Codex's AGENTS.md. It tells an agent that runs in
-// Herdr to start its Pi, Claude Code or Codex sub-agents with the hc
-// templates install.sh writes (pi-chat, claude-chat, codex-chat), so the
-// person can open them as chats.
+// Herdr to start its Pi, Claude Code, Codex or Hermes sub-agents with the hc
+// templates install.sh writes (pi-chat, claude-chat, codex-chat, hermes-chat),
+// so the person can open them as chats.
 //
 // The note is one block between marker lines. A file is written only for an
 // agent whose config folder exists (created when missing). Install again
@@ -23,7 +23,7 @@ export const END = "<!-- herdr-chat:subagents end -->";
 export const BLOCK = [
   BEGIN,
   "## Sub-agents in Herdr",
-  'To start a Pi, Claude Code or Codex sub-agent, run `hc run --bg --name <name> pi-chat "<task>"` (or `claude-chat`, `codex-chat`), so the person can open it as a chat.',
+  'To start a Pi, Claude Code, Codex or Hermes sub-agent, run `hc run --bg --name <name> pi-chat "<task>"` (or `claude-chat`, `codex-chat`, `hermes-chat`), so the person can open it as a chat.',
   "Use `hc run --bg --name <name> -- pi` (or `-- claude`, `-- codex`) only when you need its terminal UI.",
   "Everything else is the same: `hc send`, `hc wait`, `hc read` and `hc kill` by name.",
   END,

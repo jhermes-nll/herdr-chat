@@ -21,8 +21,8 @@ import { hostBuild } from "./build.ts";
 
 const USAGE = `herdr-chat-host serve   --chat <id> --cwd <dir> --state-dir <dir> [--provider pi] [--session <file>] [--after-pid <pid> [--model <provider/id>] [--thinking <level>]] [--app-home <dir>] [--<provider> <cmd>] [-- <agent args>]
   (--app-home: the Herdr app's home, whose app it asks to close its hidden pane once its chat's pane is gone; default $HERDR_APP_HOME, else ~/.config/herdr-app)
-  (--provider defaults to the chat's registered provider, else pi; --pi <cmd> or HERDR_CHAT_PI picks the pi binary)
-herdr-chat-host run     [--provider pi|claude|codex] [--session <file>] [--cwd <dir>] [-- <agent args>]
+  (--provider defaults to the chat's registered provider, else pi; --pi <cmd> or HERDR_CHAT_PI picks the pi binary; Hermes takes --hermes <api_server url> or HERDR_CHAT_HERMES_URL instead of a binary)
+herdr-chat-host run     [--provider pi|claude|codex|hermes] [--session <file>] [--cwd <dir>] [-- <agent args>]
   (a sub-agent chat, for \`hc run\`: a fresh chat id, the app's state dir and the chat mod's config.json, labels its own terminal)
 herdr-chat-host tui-session --provider <id> --pid <pid> --cwd <dir> [--label <session>]
   (Continue as chat: the session a running agent TUI has open, as JSON {session, model, thinking, args}; exit 1 with why not)
