@@ -1,10 +1,10 @@
 // new-chat: the "New chat with…" launcher, and the commands that open chats.
 //
 // As an overlay (`mod.open:new-chat`, the "open" key: cmd-i): Pi, Claude
-// Code or Codex, then a new tab with the chat (mod chat, props {chat, cwd,
+// Code, Codex or Hermes, then a new tab with the chat (mod chat, props {chat, cwd,
 // provider}) for the focused terminal's folder (else the space's). Keys:
-// p / c / x pick (only an agent that is installed; the launcher has no text
-// field, so letters are always picks), 1/2/3 too, ↑↓ move, Enter opens the
+// p / c / x / h pick (only an agent that is installed; the launcher has no text
+// field, so letters are always picks), 1/2/3/4 too, ↑↓ move, Enter opens the
 // selected one (the last choice, kept in <appHome>/data/herdr-chat/launcher.json),
 // Esc closes. Its commands: `new-chat.pick:<provider>`, `new-chat.enter`.
 //
@@ -12,7 +12,7 @@
 // install/layout.ts): always on screen at no size, so it takes the commands a
 // key or another mod runs while no launcher is open:
 // - `new-chat.open`: the launcher (as mod.open:new-chat; again: closes it);
-// - `new-chat.pi`, `new-chat.claude`, `new-chat.codex`: that agent's chat, in a new tab;
+// - `new-chat.pi`, `new-chat.claude`, `new-chat.codex`, `new-chat.hermes`: that agent's chat, in a new tab;
 // - `new-chat.continue:<terminal>`: chat-menu's Continue as chat (an agent's
 //   TUI handed over to a chat on its session, see continueAsChat);
 //   `new-chat.continue`: the same on the focused terminal (the "continue" key);
@@ -32,6 +32,7 @@ const CHOICES = [
   { id: "pi", label: "Pi", icon: "pi", tint: true, letter: "p" },
   { id: "claude", label: "Claude Code", icon: "claude", letter: "c" },
   { id: "codex", label: "Codex", icon: "codex", letter: "x" },
+  { id: "hermes", label: "Hermes", icon: "hermes", tint: true, letter: "h" },
 ];
 const PREFS = () => `${appHome()}/data/herdr-chat/launcher.json`;
 
