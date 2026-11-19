@@ -95,3 +95,21 @@ What else differs, from each agent's own mechanism, not from the chat:
 1. `host/providers/<id>/`: the adapter (`ProviderAdapter`), its `tools.ts` (ToolMap), a fake agent under `tests/fake-<id>/`, host tests.
 2. Register it in `host/providers/index.ts`, and its name and icon in `herdr-app/mods/chat/util.js` (`PROVIDER_NAMES`, `icons/providers/<id>.svg`).
 3. The launcher's entry (`herdr-app/mods/new-chat/main.js` `CHOICES`), its key name (`install/keys.ts`), its instruction file (`install/instructions.ts`) and `PROVIDERS` in `install/app.sh`.
+
+## Hermes
+
+Hermes is the one provider that isn't a CLI on this machine: the adapter talks
+HTTP to a Hermes **api_server** (OpenAI-compatible, model `hermes-agent`) and
+never spawns a process. It needs that server running, wherever the person runs
+it — the base URL is never guessed: the `--hermes <url>` serve flag (also
+`$HERDR_CHAT_HERMES`), else `$HERDR_CHAT_HERMES_URL`; an API key, if the server
+wants one, is `$HERDR_CHAT_HERMES_API_KEY`. Without a URL the chat says so at
+startup instead of guessing a host and port.
+
+v1 is text in, streamed text out, stop: no tool cards, no approval cards, no
+steering (a message sent mid-run queues), no thinking levels to pick (that
+picker stays hidden; the model picker shows only Hermes, the one model the
+api_server lists), no `/fork`, no resume (the conversation lives in the
+chat's host process), no cost meter, no TUI hand-off — all declared absent
+in its `Capabilities`. An SSE event it doesn't recognise is ignored; an
+HTTP error or an SSE `error` payload becomes the run's error.
