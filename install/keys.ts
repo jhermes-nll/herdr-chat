@@ -2,10 +2,10 @@
 // (<app home>/data/herdr-chat/keys.json, its "global" part) into Herdr's keys.json
 // (its global section), and their exact undo.
 //
-//   "global": {"open": "cmd-i", "pi": null, "claude": null, "codex": null, "continue": null}
+//   "global": {"open": "cmd-i", "pi": null, "claude": null, "codex": null, "hermes": null, "continue": null}
 //
 // - open: the launcher (mod.open:new-chat, which works in every layout);
-//   pi/claude/codex: a chat with that agent at once (new-chat.<agent>, which
+//   pi/claude/codex/hermes: a chat with that agent at once (new-chat.<agent>, which
 //   the new-chat copy in the layout's floating list takes: install/layout.ts);
 //   continue: the focused agent TUI continues as a chat (new-chat.continue, the
 //   right-click menu's Continue as chat).
@@ -24,10 +24,10 @@ import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from "nod
 import { join } from "node:path";
 
 type Json = any;
-export const NAMES = ["open", "pi", "claude", "codex", "continue"] as const;
+export const NAMES = ["open", "pi", "claude", "codex", "hermes", "continue"] as const;
 export type Name = (typeof NAMES)[number];
-export const ACTION: Record<Name, string> = { open: "mod.open:new-chat", pi: "new-chat.pi", claude: "new-chat.claude", codex: "new-chat.codex", continue: "new-chat.continue" };
-export const TITLE: Record<Name, string> = { open: "New chat", pi: "Pi chat", claude: "Claude Code chat", codex: "Codex chat", continue: "Continue as chat" };
+export const ACTION: Record<Name, string> = { open: "mod.open:new-chat", pi: "new-chat.pi", claude: "new-chat.claude", codex: "new-chat.codex", hermes: "new-chat.hermes", continue: "new-chat.continue" };
+export const TITLE: Record<Name, string> = { open: "New chat", pi: "Pi chat", claude: "Claude Code chat", codex: "Codex chat", hermes: "Hermes chat", continue: "Continue as chat" };
 
 export type Own = { [chord: string]: { action: string; was: string | null } };
 export type Record2 = { version: 2; global: Own };
